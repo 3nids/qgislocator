@@ -1,10 +1,13 @@
 
-from qgis.core import QgsProject, QgsLocatorResult, QgsRectangle, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsSettings
-from .. import networkaccessmanager
-from .basefilter import GeocoderFilter
-from .base_api_key_dialog import BaseApiKeyDialog
-
 import json
+
+from qgis.core import QgsProject, QgsLocatorResult, QgsRectangle, QgsCoordinateReferenceSystem, QgsCoordinateTransform, \
+    QgsSettings
+
+from ..core import network_access_manager
+from .google_api_key_dialog import GoogleApiKeyDialog
+from ..core.base_filter import GeocoderFilter
+
 
 class GoogleGeocodeFilter(GeocoderFilter):
 
@@ -32,7 +35,7 @@ class GoogleGeocodeFilter(GeocoderFilter):
         self.info('parent: {}'.format(parent))
         # parent of the google config dialog should actually be the locatortab in the options dialog
         # but dunno how to get a handle to it easily
-        google_config = BaseApiKeyDialog(parent)
+        google_config = GoogleApiKeyDialog(parent)
         # to be able to see the config, we need to search for a QgsLocatorOptionsWidget ?
         google_config.raise_()
         google_config.activateWindow()
@@ -85,7 +88,7 @@ class GoogleGeocodeFilter(GeocoderFilter):
                 result.userData = doc
                 self.resultFetched.emit(result)
 
-        except networkaccessmanager.RequestsException:
+        except network_access_manager.RequestsException:
             # Handle exception
             print('!!!!!!!!!!! EXCEPTION !!!!!!!!!!!!!: \n{}'. format(RequestsException.args))
 

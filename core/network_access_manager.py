@@ -3,7 +3,7 @@
 ***************************************************************************
     An httplib2 replacement that uses QgsNetworkAccessManager
 
-    https://github.com/boundlessgeo/lib-qgis-commons/blob/master/qgiscommons2/network/networkaccessmanager.py
+    https://github.com/boundlessgeo/lib-qgis-commons/blob/master/qgiscommons2/network/network_access_manager.py
 
     ---------------------
     Date                 : August 2016

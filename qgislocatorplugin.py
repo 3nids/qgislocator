@@ -4,7 +4,7 @@ from qgis.PyQt.QtCore import QUrl
 from qgis.PyQt.QtGui import QIcon, QDesktopServices
 from qgis.PyQt.QtWidgets import QAction, QMessageBox
 from qgis.core import QgsApplication
-from .locatorfilters import googlegeocoder, googleplaces, nominatim, pdoklocatieserver
+from .locatorfilters import google_geocoder, google_places, nominatim, pdoklocatieserver
 
 import os
 
@@ -44,7 +44,7 @@ class QgisLocator:
         self.pdok_filter = pdoklocatieserver.PdokFilter(self.iface)
         self.iface.registerLocatorFilter(self.pdok_filter)
 
-        self.google_geocode_filter = googlegeocoder.GoogleGeocodeFilter(self.iface)
+        self.google_geocode_filter = google_geocoder.GoogleGeocodeFilter(self.iface)
         self.iface.registerLocatorFilter(self.google_geocode_filter)
 
         #self.google_places_filter = googleplaces.GooglePlacesFilter(self.iface)

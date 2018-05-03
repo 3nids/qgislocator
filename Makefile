@@ -35,17 +35,12 @@ VERSION=$(shell cat metadata.txt | grep version= | sed -e 's,version=,,')
 # lrelease
 LRELEASE = lrelease
 
-# translation
-SOURCES = \
-	__init__.py \
-	qgislocatorplugin.py networkaccessmanager.py \
-	locatorfilters \
-
 PLUGINNAME = qgislocator
 
 PY_FILES = \
 	__init__.py \
-	qgislocatorplugin.py networkaccessmanager.py \
+	qgislocatorplugin.py \
+	core \
 	locatorfilters \
 
 UI_FILES = locatorfilters
@@ -65,7 +60,13 @@ HELP = help/build/html
 
 RESOURCE_SRC=$(shell grep '^ *<file' resources.qrc | sed 's@</file>@@g;s/.*>//g' | tr '\n' ' ')
 
-QGISDIR=.local/share/QGIS/QGIS3/profiles/default
+OS := $(shell uname)
+ifeq ($(OS), Darwin)
+  QGISDIR=Library/Application\ Support/QGIS/QGIS3/profiles/default
+else
+  QGISDIR=.local/share/QGIS/QGIS3/profiles/default
+endif
+
 
 default: compile
 
@@ -95,7 +96,7 @@ test: compile transcompile
 	@echo "e.g. source run-env-linux.sh <path to qgis install>; make test"
 	@echo "----------------------"
 
-deploy: compile doc transcompile
+deploy: compile
 	@echo
 	@echo "--------------------------------------------------------"
 	@echo "Deploying plugin to your qgis3/python/plugins directory."

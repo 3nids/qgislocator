@@ -1,9 +1,10 @@
 import json
-from qgis.core import QgsProject, QgsLocatorResult, QgsRectangle, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsSettings
-from .basefilter import GeocoderFilter
-from .base_api_key_dialog import BaseApiKeyDialog
-from ..networkaccessmanager import RequestsException
 
+from qgis.core import QgsLocatorResult, QgsSettings
+
+from ..core.network_access_manager import RequestsException
+from ..core.base_filter import GeocoderFilter
+from .google_api_key_dialog import GoogleApiKeyDialog
 
 class GooglePlacesFilter(GeocoderFilter):
 
@@ -30,7 +31,7 @@ class GooglePlacesFilter(GeocoderFilter):
     def openConfigWidget(self, parent=None):
         # parent of the google config dialog should actually be the locatortab in the options dialog
         # but dunno how to get a handle to it easily
-        google_config = BaseApiKeyDialog(self.iface.mainWindow())
+        google_config = GoogleApiKeyDialog(self.iface.mainWindow())
         # to be able to see the config, we need to search for a QgsLocatorOptionsWidget ?
         #notworking self.google_config.activateWindow()
         #notworking self.google_config.raise_()

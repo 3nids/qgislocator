@@ -1,8 +1,11 @@
-from qgis.core import QgsProject, QgsLocatorResult, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsPoint, QgsPointXY
-from .basefilter import GeocoderFilter
-from ..networkaccessmanager import RequestsException
-
 import json
+
+from qgis.core import QgsProject, QgsLocatorResult, QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsPoint, \
+    QgsPointXY
+
+from ..core.network_access_manager import RequestsException
+from ..core.base_filter import GeocoderFilter
+
 
 class PdokFilter(GeocoderFilter):
 

@@ -1,5 +1,5 @@
 from qgis.core import Qgis, QgsLocatorFilter, QgsMessageLog, QgsSettings
-from .. import networkaccessmanager
+from .network_access_manager import NetworkAccessManager
 
 
 class GeocoderFilter(QgsLocatorFilter):
@@ -16,7 +16,7 @@ class GeocoderFilter(QgsLocatorFilter):
 
     def __init__(self, iface):
         super(QgsLocatorFilter, self).__init__()
-        self.nam = networkaccessmanager.NetworkAccessManager()
+        self.nam = NetworkAccessManager()
         self.iface = iface
         self.settings = QgsSettings()
         # key to use when a location provider needs an api key (see googlegeocoder for example)
